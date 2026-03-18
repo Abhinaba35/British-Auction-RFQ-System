@@ -8,11 +8,20 @@ const net = require('net');
 const app = express();
 const server = http.createServer(app);
 
+// ── Allowed origins (single source of truth) ───────────────────────────────────
+const ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://british-auction-rfq-system.vercel.app',
+  ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
+];
+
 // ── Socket.io setup ────────────────────────────────────────────────────────────
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-    methods: ['GET', 'POST']
+    origin: ALLOWED_ORIGINS,
+    methods: ['GET', 'POST'],
+    credentials: true,
   }
 });
 
@@ -21,9 +30,17 @@ app.set('io', io);
 
 // ── Middleware ─────────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+      "http://localhost:3000",
+      "https://british-auction-rfq-system.vercel.app"
+    ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+
+// Ensure OPTIONS preflight is handled for all routes
+app.options('*', cors());
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
