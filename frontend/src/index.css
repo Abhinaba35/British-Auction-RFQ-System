@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy-950: #070a1e;
+    --navy-900: #0f1333;
+    --navy-800: #1e2459;
+    --gold-400: #fbbf24;
+    --gold-500: #f59e0b;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  body {
+    @apply font-body bg-navy-950 text-white antialiased;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 { @apply font-display; }
+}
+
+@layer components {
+  .page {
+    @apply pt-20 pb-16 min-h-screen px-4 max-w-7xl mx-auto relative;
+  }
+
+  .page-bg {
+    @apply absolute inset-0 overflow-hidden pointer-events-none;
+  }
+
+  .page-bg-orb {
+    @apply absolute w-[32rem] h-[32rem] rounded-full blur-3xl opacity-60;
+  }
+  .btn-primary {
+    @apply bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold px-5 py-2.5 rounded-xl
+           transition-all duration-200 active:scale-[0.99] shadow-lg shadow-gold-500/20
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950;
+  }
+
+  .btn-secondary {
+    @apply border border-white/15 hover:border-white/30 text-white px-5 py-2.5 rounded-xl
+           transition-all duration-200 bg-white/5 hover:bg-white/10
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950;
+  }
+
+  .btn-ghost {
+    @apply text-white/60 hover:text-white px-4 py-2 rounded-xl transition-colors
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950;
+  }
+
+  .card {
+    @apply bg-navy-900/70 border border-white/10 rounded-2xl shadow-[0_18px_60px_-30px_rgba(0,0,0,0.85)]
+           backdrop-blur-sm;
+  }
+
+  .card-glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-[0_18px_60px_-30px_rgba(0,0,0,0.85)];
+  }
+
+  .input-field {
+    @apply w-full bg-navy-800/60 border border-white/10 rounded-xl px-4 py-3 text-white
+           placeholder-white/30 focus:outline-none focus:border-gold-500/60 focus:ring-1
+           focus:ring-gold-500/25 transition-all duration-200 font-body text-sm;
+  }
+
+  .label {
+    @apply block text-white/60 text-xs font-medium uppercase tracking-wider mb-1.5;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/6 border border-white/10 text-white/70 text-xs;
+  }
+
+  .rank-badge {
+    @apply inline-flex items-center justify-center w-9 h-9 rounded-full font-mono font-bold text-sm;
+  }
+
+  .rank-l1 { @apply rank-badge bg-gold-500 text-navy-950; }
+  .rank-l2 { @apply rank-badge bg-white/20 text-white; }
+  .rank-l3 { @apply rank-badge bg-white/10 text-white/70; }
+
+  .status-active {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15
+           text-emerald-400 text-xs font-medium border border-emerald-500/20;
+  }
+  .status-closed {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10
+           text-white/50 text-xs font-medium border border-white/10;
+  }
+  .status-force_closed {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/15
+           text-red-400 text-xs font-medium border border-red-500/20;
+  }
+  .status-draft {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/15
+           text-blue-400 text-xs font-medium border border-blue-500/20;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-white/15 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-white/30; }
+
+/* Animations */
+.animate-slide-up { animation: slideUp 0.35s ease-out both; }
+@keyframes slideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
