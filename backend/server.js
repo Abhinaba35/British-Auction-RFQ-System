@@ -21,7 +21,11 @@ app.set('io', io);
 
 // ── Middleware ─────────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+      "http://localhost:3000",
+      "https://british-auction-rfq-system.vercel.app"
+    ],
+    methods: ["GET", "POST"],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
