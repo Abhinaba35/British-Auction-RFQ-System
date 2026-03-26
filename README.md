@@ -126,12 +126,12 @@ npm start
 ```bash
 DATABASE_URL=...
 JWT_SECRET=...
-FRONTEND_URL=https://your-frontend.vercel.app
+FRONTEND_URL=https://british-auction-rfq-system.vercel.app
 NODE_ENV=production
 ```
 
 ### Frontend (Vercel)
 ```bash
-REACT_APP_API_URL=https://your-backend.railway.app/api
-REACT_APP_SOCKET_URL=https://your-backend.railway.app
+REACT_APP_API_URL=https://british-auction-rfq-system.onrender.com/api
+REACT_APP_SOCKET_URL=https://british-auction-rfq-system.onrender.com
 ```
